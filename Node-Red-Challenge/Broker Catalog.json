@@ -1,0 +1,102 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Broker Catalog",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3dcd97130ca9bddf",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "Request",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "https://brasilapi.com.br/api/cvm/corretoras/v1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 520,
+        "y": 380,
+        "wires": [
+            [
+                "3263a91bef1b94e6"
+            ]
+        ]
+    },
+    {
+        "id": "3263a91bef1b94e6",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Function",
+        "func": "let Broker = msg.payload\n\n\nlet resultado = Broker.map(corretora => {\n    return `${corretora.nome_social} - ${corretora.municipio} / ${corretora.cnpj}`;\n});\n\nmsg.payload = resultado;\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 380,
+        "wires": [
+            [
+                "7aebd16509940a42"
+            ]
+        ]
+    },
+    {
+        "id": "7aebd16509940a42",
+        "type": "template",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Lista de Corretoras</title>\n</head>\n<style>\n    body {\n    font-family: Arial, sans-serif;\n    background-color: #f4f4f4;\n    margin: 20px;\n    }\n    \n    h1 {\n    text-align: center;\n    color: #333;\n    }\n    \n    ul {\n    list-style-type: none;\n    padding: 0;\n    }\n    \n    ol {\n    background: #fff;\n    margin: 10px 0;\n    padding: 15px;\n    border-radius: 8px;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n    }\n    \n    ol span {\n    font-weight: bold;\n    }\n    ol:hover{\n        background: #505050;\n        color:white;\n    }\n\n</style>\n\n<body>\n    <h1>Lista de Corretoras</h1>\n    {{#payload}}\n       <ol>{{.}}</ol> \n    {{/payload}}\n    \n</body>\n\n</html>",
+        "output": "str",
+        "x": 880,
+        "y": 380,
+        "wires": [
+            [
+                "11fe71d37690837c"
+            ]
+        ]
+    },
+    {
+        "id": "11fe71d37690837c",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "Response",
+        "statusCode": "200",
+        "headers": {
+            "header1": "value1"
+        },
+        "x": 1080,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "3ebb16e801b38d00",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "Resquest",
+        "url": "/broker_catalog",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 340,
+        "y": 380,
+        "wires": [
+            [
+                "3dcd97130ca9bddf"
+            ]
+        ]
+    }
+]
