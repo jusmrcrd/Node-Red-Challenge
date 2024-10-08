@@ -54,7 +54,7 @@ Endpoints da API
 
 O projeto inclui os seguintes endpoints configurados no Node-RED para lidar com a funcionalidade de busca e exibição de CEP e lista de Catalogo de corretoras:
 
-    GET /zipcode/:zip 
+    GET /zip_searcher/:zip 
         Descrição: Este endpoint recebe um parâmetro cep e retorna os detalhes do CEP buscado, como estado, cidade, bairro e rua.
         Exemplo de Uso: http://localhost:1880/zip_searcher/47645-970    
    
