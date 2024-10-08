@@ -37,8 +37,6 @@ Em seguida, abra o Node-RED no navegador:
 
 
 
-
-
 # Executando com Docker (Opcional)
 
 Com o docker instalado Execute o contêiner:
@@ -50,7 +48,20 @@ Acesse o Node-RED no navegador:
      http://localhost:1880
 
 
-Endpoints da API
+# Uso da Implementação
+
+Configuração Inicial:
+        Após executar o Node-RED no ambiente local ou docker, acesse o painel de gerenciamento via navegador (geralmente em http://localhost:1880).
+
+Importação do Fluxo:
+        No menu superior direito, clique em Menu (três linhas horizontais) > Importar > Importar do Arquivo.
+        Selecione o arquivo JSON que contém o fluxo do Node-RED fornecido com o projeto.
+        Após a importação, verifique se todos os nós foram carregados corretamente.
+
+Deploy:
+        Após importar o fluxo, clique no botão Deploy no canto superior direito.
+
+# Endpoints da API
 
 O projeto inclui os seguintes endpoints configurados no Node-RED para lidar com a funcionalidade de busca e exibição de CEP e lista de Catalogo de corretoras:
 
